@@ -16,13 +16,14 @@ body {
     /* Sets the body to only scroll vertically on mobile */
     min-height: 100vh;
     overflow-x: hidden; 
-    
+    width: 100%;
+    height: 100%;
     font-family: 'Georgia', serif; 
     color: var(--color-text);
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Start content at the top, not center (better for scrolling) */
-    padding-top: 20px;
+    padding-top: 30px;
     margin: 0;
     
     /* Tartan Pattern */
@@ -37,8 +38,8 @@ body {
 .container {
     /* Optimized for mobile viewport */
     width: 95%; /* Use almost full width */
-    max-width: 400px; /* Max width constraint */
-    padding: 20px; /* Reduced padding */
+    max-width: 1380px; /* Max width constraint */
+    padding: 30px; /* Reduced padding */
     box-sizing: border-box; /* Ensures padding is included in the 95% width */
     
     background: #ffffff;
@@ -46,7 +47,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); 
     text-align: center;
     border: 3px solid var(--color-primary);
-    margin-bottom: 20px; /* Space at the bottom */
+    margin-bottom: 30px; /* Space at the bottom */
 }
 
 h1 {
@@ -55,7 +56,7 @@ h1 {
     align-items: center; 
     justify-content: center; 
     gap: 10px; /* Reduced gap */
-    font-size: 2em; /* Optimized title size */
+    font-size: 3.25em; /* Optimized title size */
     margin-bottom: 5px;
     font-weight: 700;
     text-transform: none; 
@@ -67,8 +68,8 @@ h1 {
 }
 
 p {
-    margin-bottom: 25px;
-    font-size: 1.0em;
+    margin-bottom: 40px;
+    font-size: 2.25em;
 }
 
 /* --- INPUT GROUP (STACKED MOBILE LAYOUT) --- */
@@ -76,7 +77,7 @@ p {
     /* Always stacks vertically on mobile */
     display: flex;
     flex-direction: column; 
-    gap: 10px;
+    gap: 20px;
     margin-bottom: 20px;
 }
 
@@ -87,7 +88,7 @@ p {
     border: 2px solid var(--color-primary); 
     border-radius: 8px; 
     box-sizing: border-box;
-    font-size: 1.1em;
+    font-size: 1.3em;
 }
 
 #nameInput:focus {
@@ -138,7 +139,7 @@ p {
 }
 
 #tableNumber {
-    font-size: 2.5em; 
+    font-size: 5em; 
     color: var(--color-secondary); 
     font-weight: 900;
     line-height: 1; 
@@ -150,7 +151,7 @@ p {
 
 .small-label {
     margin-bottom: 0;
-    font-size: 0.9em;
+    font-size: 1.9em;
     font-weight: 600;
     color: var(--color-secondary);
 }
@@ -163,6 +164,7 @@ p {
     border-radius: 10px;
     background-color: #f7f7f7; 
     color: var(--color-secondary);
+    font-size: 1.1em;
 }
 
 /* --- Match List Styling --- */
@@ -173,10 +175,11 @@ p {
 }
 
 #matchesList h3 {
-    font-size: 1em;
+    font-size: 1.2em;
     color: var(--color-primary);
     margin-bottom: 5px;
     font-weight: 600;
+    max-height: 300px;
 }
 
 #matchesList ul {
@@ -184,8 +187,8 @@ p {
     padding: 0;
     margin: 0;
     border: 1px solid var(--color-primary);
-    border-radius: 8px;
-    max-height: 200px; /* Good vertical space for mobile scrolling */
+    border-radius: 10px;
+    max-height: 300px; /* Good vertical space for mobile scrolling */
     overflow-y: auto; 
     /*background-color: var(--color-secondary);
     color:#f0f4f7;*/
@@ -195,7 +198,7 @@ p {
     padding: 12px 15px; /* Large tap target */
     border-bottom: 1px solid #d0e8e0;
     cursor: pointer;
-    font-size: 1.0em;
+    font-size: 1.9em;
 }
 
 #matchesList li:last-child {
