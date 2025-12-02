@@ -99,30 +99,18 @@ p {
 #clearButton {
     /* Full width button when stacked */
     width: 100%; 
-    background-color: var(--color-highlight); /* Pale Yellow/Cream button */
+    background-color: var(--color-primary); /* Pale Yellow/Cream button */
     color: var(--color-text);
     padding: 10px 15px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 1em;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-#clearButton {
-    background-color: var(--color-highlight); 
-    color: var(--color-text);
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1em;
+    font-size: 1.75em;
     font-weight: bold;
 }
 
 #clearButton:hover {
-    background-color: #ffd257; 
+    background-color: var(--color-primary); 
 }
 
 /* --- Result Box (The Green/Mint Area) --- */
