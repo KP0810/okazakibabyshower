@@ -32,12 +32,13 @@ body {
 
 .container {
     background: #ffffff;
-    padding: 40px 50px;
     border-radius: 15px; /* Moderately rounded corners */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); 
     text-align: center;
-    max-width: 450px;
-    width: 90%;
+    max-width: 400px; /* Slightly reduced max width for better mobile preview */
+    width: 95%; /* Use almost full width on small screens */
+    padding: 20px; /* Reduced padding for mobile */
+    box-sizing: border-box; /* Ensures padding is inside the width/height */
     border: 3px solid var(--color-primary); /* Mint Green border */
 }
 
@@ -45,9 +46,9 @@ h1 {
     color: var(--color-secondary); /* Sky Blue Title */
     display: flex;
     align-items: center; 
-    justify-content: center; 
-    gap: 15px; 
+    justify-content: center;
     font-size: 2.095em;
+    gap: 10px;
     margin-bottom: 5px;
     font-weight: 700;
     text-transform: none; 
@@ -55,8 +56,8 @@ h1 {
 }
 
 .title-icon {
-    width: 50px; 
-    height: 50px;
+    width: 40px; 
+    height: 40px;
 }
 
 p {
@@ -69,16 +70,20 @@ p {
     display: flex;
     gap: 10px;
     margin-bottom: 25px;
+    /* On mobile, stack the input field and the Clear button vertically */
+    flex-direction: column; 
+    gap: 10px;
 }
 
 #nameInput {
-    flex-grow: 1; 
-    padding: 12px;
+    flex-grow: 1;
     border: 2px solid var(--color-primary); 
     border-radius: 8px; /* Soft rounding */
     box-sizing: border-box;
-    font-size: 1em;
     transition: border-color 0.3s;
+    padding: 15px 12px; /* Increased padding for easier tapping */
+    font-size: 1.1em; /* Larger font size in the input for readability */
+    height: auto; /* Ensure flexibility */
 }
 
 #nameInput:focus {
@@ -96,6 +101,8 @@ p {
     font-size: 1em;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    width: 100%; 
+    padding: 12px;
 }
 
 #clearButton:hover {
@@ -115,13 +122,9 @@ p {
     overflow: visible; 
 }
 
-/* --- FLAG ON THE GREEN EFFECT (Baby/Golf style) --- */
-
-
-
 #tableNumber {
-    font-size: 3em; 
-    color: var(--color-secondary); /* Pale Yellow number */
+    font-size: 2.5em; 
+    color: var(--color-secondary); 
     font-weight: 900;
     line-height: 1; 
     display: inline-block;
@@ -168,12 +171,12 @@ p {
     border: 1px solid var(--color-primary);
     border-radius: 8px;
     background-color: #ffffff;
-    max-height: 150px; 
+    max-height: 200px; 
     overflow-y: auto; 
 }
 
 #matchesList li {
-    padding: 10px 15px;
+    padding: 12px 15px;
     border-bottom: 1px solid #d0e8e0;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -192,4 +195,24 @@ p {
 
 .hidden {
     display: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* ⭐ MEDIA QUERY FOR VERY SMALL SCREENS (e.g., iPhone 5/SE) ⭐ */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 350px) {
+    .container {
+        padding: 15px;
+        border-width: 2px; /* Slightly thinner border */
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .title-icon {
+        width: 35px;
+        height: 35px;
+    }
 }
