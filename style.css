@@ -11,17 +11,21 @@
     --color-tartan-dark: #d5e5f5; /* Very Light Blue/Gray for tartan contrast */
 }
 
-/* --- TARTAN PATTERN BACKGROUND (Softened) --- */
+/* --- MOBILE LAYOUT & BACKGROUND --- */
 body {
+    /* Sets the body to only scroll vertically on mobile */
+    min-height: 100vh;
+    overflow-x: hidden; 
+    
     font-family: 'Georgia', serif; 
     color: var(--color-text);
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    align-items: flex-start; /* Start content at the top, not center (better for scrolling) */
+    padding-top: 20px;
     margin: 0;
     
-    /* Simulate a soft, plaid/tartan pattern */
+    /* Tartan Pattern */
     background-color: var(--color-background-soft);
     background-image: 
         repeating-linear-gradient(45deg, var(--color-tartan-light) 0, var(--color-tartan-light) 5px, transparent 5px, transparent 10px),
@@ -31,28 +35,30 @@ body {
 }
 
 .container {
+    /* Optimized for mobile viewport */
+    width: 95%; /* Use almost full width */
+    max-width: 400px; /* Max width constraint */
+    padding: 20px; /* Reduced padding */
+    box-sizing: border-box; /* Ensures padding is included in the 95% width */
+    
     background: #ffffff;
-    border-radius: 15px; /* Moderately rounded corners */
+    border-radius: 15px; 
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); 
     text-align: center;
-    max-width: 400px; /* Slightly reduced max width for better mobile preview */
-    width: 95%; /* Use almost full width on small screens */
-    padding: 20px; /* Reduced padding for mobile */
-    box-sizing: border-box; /* Ensures padding is inside the width/height */
-    border: 3px solid var(--color-primary); /* Mint Green border */
+    border: 3px solid var(--color-primary);
+    margin-bottom: 20px; /* Space at the bottom */
 }
 
 h1 {
     color: var(--color-secondary); /* Sky Blue Title */
     display: flex;
     align-items: center; 
-    justify-content: center;
-    font-size: 2.095em;
-    gap: 10px;
+    justify-content: center; 
+    gap: 10px; /* Reduced gap */
+    font-size: 2em; /* Optimized title size */
     margin-bottom: 5px;
     font-weight: 700;
     text-transform: none; 
-    letter-spacing: 0;
 }
 
 .title-icon {
@@ -61,29 +67,27 @@ h1 {
 }
 
 p {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     font-size: 1.0em;
 }
 
-/* --- Input Group & Buttons --- */
+/* --- INPUT GROUP (STACKED MOBILE LAYOUT) --- */
 .input-group {
+    /* Always stacks vertically on mobile */
     display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
-    /* On mobile, stack the input field and the Clear button vertically */
     flex-direction: column; 
     gap: 10px;
+    margin-bottom: 20px;
 }
 
 #nameInput {
-    flex-grow: 1;
+    /* Increased size for easy tapping and readability */
+    flex-grow: 1; 
+    padding: 15px 12px; 
     border: 2px solid var(--color-primary); 
-    border-radius: 8px; /* Soft rounding */
+    border-radius: 8px; 
     box-sizing: border-box;
-    transition: border-color 0.3s;
-    padding: 15px 12px; /* Increased padding for easier tapping */
-    font-size: 1.1em; /* Larger font size in the input for readability */
-    height: auto; /* Ensure flexibility */
+    font-size: 1.1em;
 }
 
 #nameInput:focus {
@@ -92,6 +96,8 @@ p {
 }
 
 #clearButton {
+    /* Full width button when stacked */
+    width: 100%; 
     background-color: var(--color-highlight); /* Pale Yellow/Cream button */
     color: var(--color-text);
     padding: 10px 15px;
@@ -101,8 +107,17 @@ p {
     font-size: 1em;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    width: 100%; 
+}
+
+#clearButton {
+    background-color: var(--color-highlight); 
+    color: var(--color-text);
     padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
 }
 
 #clearButton:hover {
@@ -112,10 +127,10 @@ p {
 /* --- Result Box (The Green/Mint Area) --- */
 
 #result {
-    margin-top: 25px;
-    border: 4px solid var(--color-primary); /* Mint Green border */
-    padding: 20px 0 25px 0; 
-    border-radius: 15px; /* Soft rounding */
+    margin-top: 20px;
+    border: 4px solid var(--color-primary);
+    padding: 20px 0 25px 0; /* Adjusted padding */
+    border-radius: 15px;
     background-color: #f7f7f7; 
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05); 
     position: relative; 
@@ -170,23 +185,17 @@ p {
     margin: 0;
     border: 1px solid var(--color-primary);
     border-radius: 8px;
-    background-color: #ffffff;
-    max-height: 200px; 
+    max-height: 200px; /* Good vertical space for mobile scrolling */
     overflow-y: auto; 
+    /*background-color: var(--color-secondary);
+    color:#f0f4f7;*/
 }
 
 #matchesList li {
-    padding: 12px 15px;
+    padding: 12px 15px; /* Large tap target */
     border-bottom: 1px solid #d0e8e0;
     cursor: pointer;
-    transition: background-color 0.2s;
     font-size: 1.0em;
-}
-
-#matchesList li:hover {
-    background-color: #eaf3f9; 
-    font-weight: 600;
-    color: var(--color-secondary);
 }
 
 #matchesList li:last-child {
