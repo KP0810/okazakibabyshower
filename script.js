@@ -52,6 +52,7 @@ function clearSearch() {
     document.getElementById('nameInput').value = '';
     clearResults();
     document.getElementById('clearButton').classList.add('hidden');
+    document.getElementById('nameInput').classList.remove('hidden');
 }
 
 function liveSearch() {
@@ -82,6 +83,8 @@ function liveSearch() {
     const resultDiv = document.getElementById('result');
 
     if (matchingGuests.length === 1 && matchingGuests[0].name.toLowerCase() === inputName) {
+        document.getElementById('nameInput').classList.add('hidden');
+       
         // Case 1A: Exact Match Found (Show the table and mates)
         const foundGuest = matchingGuests[0];
         const tableNum = foundGuest.table;
@@ -113,6 +116,7 @@ function liveSearch() {
         }
 
         resultDiv.classList.remove('hidden');
+
 
     } else if (matchingGuests.length >= 1) {
         // Case 2: One or more partial matches (Show list of suggestions)
