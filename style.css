@@ -193,6 +193,42 @@ p {
     border-bottom: none;
 }
 
+#tableMatesList {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--color-primary); /* Use a dashed line for separation */
+    text-align: left;
+}
+
+#tableMatesList h4 {
+    color: var(--color-secondary); /* Sky Blue heading */
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+#tableMatesList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95em;
+    /* Optional: Add a subtle list border/background */
+    border: 1px solid #eee;
+    background-color: #ffffff;
+    border-radius: 8px;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+#tableMatesList li {
+    padding: 6px 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#tableMatesList li:last-child {
+    border-bottom: none;
+}
+
 .hidden {
     display: none;
 }

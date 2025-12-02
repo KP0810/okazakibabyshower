@@ -79,24 +79,48 @@ function liveSearch() {
     );
 
     const matchesList = document.getElementById('matchesList');
+    const resultDiv = document.getElementById('result');
 
     if (matchingGuests.length === 1 && matchingGuests[0].name.toLowerCase() === inputName) {
-        const guestInfo = matchingGuests[0];
-        document.getElementById('userName').textContent = guestInfo.name;
-        document.getElementById('tableNumber').textContent = guestInfo.table;
-        document.getElementById('result').classList.remove('hidden');
+        // Case 1A: Exact Match Found (Show the table and mates)
+        const foundGuest = matchingGuests[0];
+        const tableNum = foundGuest.table;
+        
+        // Find ALL guests at this table
+        const tableMates = seatingChart
+            .filter(guest => guest.table === tableNum)
+            .map(guest => guest.name)
+            // Sort names alphabetically and filter out the user's name
+            .sort()
+            .filter(name => name !== foundGuest.name);
+
+        // Update the main result display
+        document.getElementById('userName').textContent = foundGuest.name;
+        document.getElementById('tableNumber').textContent = tableNum;
+        
+        // Update the tablemates list
+        const matesListElement = document.getElementById('tableMatesList');
+        if (tableMates.length > 0) {
+            matesListElement.innerHTML = 
+                `<h4>Your Tablemates:</h4>
+                 <ul>
+                    ${tableMates.map(name => `<li>${name}</li>`).join('')}
+                 </ul>`;
+            matesListElement.classList.remove('hidden');
+        } else {
+            matesListElement.innerHTML = `<p>You are the first one found at Table ${tableNum}!</p>`;
+            matesListElement.classList.remove('hidden');
+        }
+
+        resultDiv.classList.remove('hidden');
 
     } else if (matchingGuests.length >= 1) {
+        // Case 2: One or more partial matches (Show list of suggestions)
         let listHTML = '<h3>Did you mean one of these?</h3>';
         
         listHTML += '<ul>';
         matchingGuests.forEach(guest => {
-            // ⭐ A11Y FIX: Added tabindex="0" and role="button" for keyboard focus and semantics ⭐
-            listHTML += `<li 
-                            onclick="selectName('${guest.name}')" 
-                            onkeydown="if(event.key === 'Enter' || event.key === ' ') { selectName('${guest.name}'); }"
-                            tabindex="0"
-                            role="button">
+            listHTML += `<li onclick="selectName('${guest.name}')">
                             ${guest.name}
                          </li>`;
         });
@@ -105,6 +129,7 @@ function liveSearch() {
         matchesList.innerHTML = listHTML;
 
     } else {
+        // Case 3: NO matches found
         document.getElementById('error').innerHTML = '<p>❌ **No match found.** Keep typing or check spelling.</p>';
         document.getElementById('error').classList.remove('hidden');
     }
