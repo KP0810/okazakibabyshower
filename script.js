@@ -1,15 +1,46 @@
-// --- 1. THE SEATING DATA (UNCHANGED) ---
-const seatingChart = [
-    { name: "John Doe", table: "1" },
-    { name: "Jane Smith", table: "5" },
-    { name: "Alice Johnson", table: "2" },
-    { name: "Bob Williams", table: "5" },
-    { name: "Charlie Brown", table: "3" },
-    { name: "Eve Davis", table: "1" },
-    { name: "Jon Doh", table: "4" },
-    { name: "Johnny Doe", table: "1" },
-    { name: "Kearne Permalino", table: "16" }
-];
+let seatingChart = [];
+
+// Function to convert CSV text into a usable array of objects
+function parseCSV(text) {
+    const lines = text.trim().split('\n');
+    const headers = lines[0].split(',').map(header => header.trim()); // Get headers (Name, Table)
+    const data = [];
+
+    for (let i = 1; i < lines.length; i++) {
+        const values = lines[i].split(',');
+        if (values.length === headers.length) {
+            data.push({
+                name: values[0].trim(), // Assuming name is the first column
+                table: values[1].trim() // Assuming table is the second column
+            });
+        }
+    }
+    return data;
+}
+
+// Function to fetch the CSV file
+function loadSeatingChart() {
+    fetch('guests.csv')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(csvText => {
+            seatingChart = parseCSV(csvText);
+            console.log("Seating Chart loaded successfully:", seatingChart.length, "guests.");
+        })
+        .catch(error => {
+            console.error("Could not load CSV file:", error);
+            // Fallback: Display an error message to the user if the data doesn't load
+            document.getElementById('error').innerHTML = `<p>❌ **Error loading seating data.** Please refresh the page.</p>`;
+            document.getElementById('error').classList.remove('hidden');
+        });
+}
+
+// Call the loading function immediately
+loadSeatingChart();
 
 function clearResults() {
     document.getElementById('result').classList.add('hidden');
