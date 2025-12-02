@@ -193,36 +193,48 @@ p {
     border-bottom: none;
 }
 
+/* --- TABLEMATES LIST STYLING (Refined) --- */
+
 #tableMatesList {
     margin-top: 25px;
-    padding-top: 15px;
-    border-top: 1px dashed var(--color-primary); /* Use a dashed line for separation */
-    text-align: left;
+    padding-top: 20px;
+    border-top: 2px dashed var(--color-primary); /* Prominent dashed mint line */
+    text-align: center; /* Center the entire list block */
 }
 
 #tableMatesList h4 {
     color: var(--color-secondary); /* Sky Blue heading */
-    font-size: 1.1em;
-    margin-bottom: 8px;
-    font-weight: 600;
+    font-size: 1.2em; /* Slightly larger heading */
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-transform: uppercase; /* Looks more like a scorecard header */
 }
 
 #tableMatesList ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 10px 0; /* Vertical padding */
+    margin: 0 auto; /* Center the list block */
+    max-width: 80%; /* Don't let the list span the full container width */
     font-size: 0.95em;
-    /* Optional: Add a subtle list border/background */
-    border: 1px solid #eee;
-    background-color: #ffffff;
-    border-radius: 8px;
+    background-color: #ffffff; /* White background for contrast */
+    border: 1px solid var(--color-primary);
+    border-radius: 12px; /* Soft, rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Gentle shadow */
     max-height: 120px;
     overflow-y: auto;
+    text-align: left; /* Keep the names left-aligned */
 }
 
 #tableMatesList li {
-    padding: 6px 10px;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 8px 15px;
+    /* Use a light secondary color for alternating backgrounds for a neat look */
+    background-color: transparent; 
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s;
+}
+
+#tableMatesList li:nth-child(even) {
+    background-color: #f7fcf7; /* Very light mint stripe */
 }
 
 #tableMatesList li:last-child {
@@ -251,4 +263,56 @@ p {
         width: 35px;
         height: 35px;
     }
+}
+
+/* --- ANIMATION KEYFRAMES --- */
+
+@keyframes pulse-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.01);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes number-bounce {
+    0% {
+        transform: translateY(-20px) scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(5px) scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Class applied to the result box to trigger the main fade/scale animation */
+.animate-result {
+    animation: pulse-in 0.5s ease-out both;
+}
+
+/* Class applied to the table number to give it a unique, fun bounce */
+.animate-number {
+    display: inline-block; /* Essential for transform properties to work */
+    animation: number-bounce 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both; /* Delayed for a nice sequential effect */
+}
+
+/* Update the existing #result styling to remove any conflicting transitions/transforms */
+#result {
+    /* ... existing #result styles ... */
+    position: relative; 
+    overflow: visible; 
+    
+    /* Ensure no default animation is applied */
+    transition: none; 
+    transform: none;
 }

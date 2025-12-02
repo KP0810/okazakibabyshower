@@ -60,8 +60,10 @@ function liveSearch() {
     const inputName = inputField.value.trim().toLowerCase();
     const clearBtn = document.getElementById('clearButton');
     
+    // Clear results *before* running search
     clearResults(); 
 
+    // --- Button Visibility Logic ---
     if (inputName.length > 0) {
         clearBtn.classList.remove('hidden'); 
     } else {
@@ -69,23 +71,34 @@ function liveSearch() {
         return; 
     }
 
+    // --- Search Threshold ---
     if (inputName.length < 2) {
         document.getElementById('error').innerHTML = '<p>⚠️ **Please enter at least two letters of the name.**</p>';
         document.getElementById('error').classList.remove('hidden');
         return;
     }
 
-    const matchingGuests = seatingChart.filter(guest => 
-        guest.name.toLowerCase().includes(inputName)
-    );
+    // --- FORGIVING SEARCH & FILTER LOGIC (SMARTER FILTERING) ---
+    // 1. Try to find guests whose names START with the input
+    let matchingGuests = seatingChart.filter(guest => 
+        guest.name.toLowerCase().startsWith(inputName)
+    ).sort((a, b) => a.name.localeCompare(b.name));
 
+    // 2. If no starting matches found, fall back to includes()
+    if (matchingGuests.length === 0) {
+         matchingGuests = seatingChart.filter(guest => 
+            guest.name.toLowerCase().includes(inputName)
+        ).sort((a, b) => a.name.localeCompare(b.name));
+    }
+    
+    // --- DISPLAY RESULTS ---
     const matchesList = document.getElementById('matchesList');
     const resultDiv = document.getElementById('result');
+    const tableNumberSpan = document.getElementById('tableNumber'); // Get the span element
 
     if (matchingGuests.length === 1 && matchingGuests[0].name.toLowerCase() === inputName) {
-        document.getElementById('nameInput').classList.add('hidden');
-       
         // Case 1A: Exact Match Found (Show the table and mates)
+        document.getElementById('nameInput').classList.add('hidden');
         const foundGuest = matchingGuests[0];
         const tableNum = foundGuest.table;
         
@@ -93,13 +106,24 @@ function liveSearch() {
         const tableMates = seatingChart
             .filter(guest => guest.table === tableNum)
             .map(guest => guest.name)
-            // Sort names alphabetically and filter out the user's name
             .sort()
             .filter(name => name !== foundGuest.name);
 
+        // Reset and apply animation classes
+        resultDiv.classList.remove('animate-result'); 
+        tableNumberSpan.classList.remove('animate-number');
+
+        // Force reflow/repaint to ensure animation restarts (essential trick for JS animations)
+        void resultDiv.offsetWidth; 
+        void tableNumberSpan.offsetWidth;
+
+        // Add classes back immediately
+        resultDiv.classList.add('animate-result');
+        tableNumberSpan.classList.add('animate-number');
+
         // Update the main result display
         document.getElementById('userName').textContent = foundGuest.name;
-        document.getElementById('tableNumber').textContent = tableNum;
+        tableNumberSpan.textContent = tableNum;
         
         // Update the tablemates list
         const matesListElement = document.getElementById('tableMatesList');
@@ -116,7 +140,6 @@ function liveSearch() {
         }
 
         resultDiv.classList.remove('hidden');
-
 
     } else if (matchingGuests.length >= 1) {
         // Case 2: One or more partial matches (Show list of suggestions)
