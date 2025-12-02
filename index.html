@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Your Seat - Tee Time for Two!</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <div class="container">
+        <h1>
+            Take a Swing at Your Seat
+        </h1>
+        <p>Enter your full name to find your assigned table.</p>
+
+        <div class="input-group"> 
+            <input type="text" id="nameInput" aria-label="Enter your name" placeholder="Enter your name (e.g., John Doe)">
+            <button id="clearButton" class="hidden" onclick="clearSearch()">Reset</button>
+        </div>
+        
+        <div id="matchesList" aria-live="polite">
+            </div>
+
+        <div id="result" class="hidden" aria-live="polite">
+            <p>Welcome, <span id="userName"></span>!</p>
+            <p class="small-label">Make Your Way to Hole</p>
+            <span id="tableNumber"></span>
+            </div>
+
+        <div id="error" class="hidden" aria-live="polite">
+            </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
