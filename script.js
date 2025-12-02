@@ -52,6 +52,7 @@ function clearSearch() {
     document.getElementById('nameInput').value = '';
     clearResults();
     document.getElementById('clearButton').classList.add('hidden');
+    document.getElementById('instructions').classList.remove('hidden');
     document.getElementById('nameInput').classList.remove('hidden');
 }
 
@@ -98,6 +99,7 @@ function liveSearch() {
 
     if (matchingGuests.length === 1 && matchingGuests[0].name.toLowerCase() === inputName) {
         // Case 1A: Exact Match Found (Show the table and mates)
+        document.getElementById('instructions').classList.add('hidden');
         document.getElementById('nameInput').classList.add('hidden');
         const foundGuest = matchingGuests[0];
         const tableNum = foundGuest.table;
