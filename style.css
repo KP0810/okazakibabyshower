@@ -22,7 +22,7 @@ body {
     color: var(--color-text);
     display: flex;
     justify-content: center;
-    align-items: center; /* Start content at the top, not center (better for scrolling) */
+    align-items: center;
     padding-top: 30px;
     margin: 0;
     
@@ -39,7 +39,7 @@ body {
     background-attachment: fixed; /* Optional: Makes the background image static */
     background-position: center center;
     
-    background-color: rgba(0, 151, 173, 0.85); /* Fallback color */
+    background-color: var(--color-background-soft); /* Fallback color */
     
     /* Remove opacity from body, as we now control transparency via RGBA colors */
     opacity: 1;
