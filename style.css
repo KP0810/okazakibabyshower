@@ -99,6 +99,7 @@ p {
     border-radius: 8px; 
     box-sizing: border-box;
     font-size: 1.3em;
+    text-align: center;
 }
 
 #nameInput:focus {
@@ -120,7 +121,9 @@ p {
 }
 
 #clearButton:hover {
-    background-color: var(--color-primary); 
+    background-color: var(--color-secondary);
+    color: white;
+    transition: 0.3s ease-out;
 }
 
 /* --- Result Box (The Green/Mint Area) --- */
