@@ -30,7 +30,7 @@ body {
     background-image: 
         repeating-linear-gradient(45deg, var(--color-tartan-light) 0, var(--color-tartan-light) 10px, transparent 10px, transparent 28px),
         repeating-linear-gradient(-45deg, var(--color-tartan-dark) 0, var(--color-tartan-dark) 10px, transparent 15px, transparent 28px),
-        linear-gradient(rgba(0, 151, 173, .85),rgba(0, 151, 173, 0.15)),
+        linear-gradient(rgba(0, 151, 173, 0.85),rgba(0, 151, 173, 0.15)),
         url(background.jpg);
     /* Set size for the tartan pattern and the image */
     background-size: 80px 80px, 80px 80px, cover, cover; 
@@ -99,7 +99,6 @@ p {
     border-radius: 8px; 
     box-sizing: border-box;
     font-size: 1.3em;
-    text-align: center;
 }
 
 #nameInput:focus {
