@@ -74,7 +74,7 @@ function liveSearch() {
 
     // --- Search Threshold ---
     if (inputName.length < 2) {
-        document.getElementById('error').innerHTML = '<p>⚠️ **Please enter at least two letters of the name.**</p>';
+        document.getElementById('error').innerHTML = '<p>⚠️</br><b>Please enter at least two letters of the name.</b></p>';
         document.getElementById('error').classList.remove('hidden');
         return;
     }
@@ -159,7 +159,7 @@ function liveSearch() {
 
     } else {
         // Case 3: NO matches found
-        document.getElementById('error').innerHTML = '<p>❌ **No match found.** Keep typing or check spelling.</p>';
+        document.getElementById('error').innerHTML = '<p>❌</br><b>No match found.</b></br>Keep typing or check spelling.</p>';
         document.getElementById('error').classList.remove('hidden');
     }
 }

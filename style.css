@@ -7,8 +7,8 @@
     --color-background-soft: #f0f4f7;  /* Light Blue/Gray (Subtle background) */
     --color-text: #3c3c3c;        /* Soft Dark Grey */
     --color-highlight: #ffdc73;   /* Pale Yellow/Cream (Soft Gold accent) */
-    --color-tartan-light: #ffffff;
-    --color-tartan-dark: #d5e5f5; /* Very Light Blue/Gray for tartan contrast */
+    --color-tartan-light: #ffffff66;
+    --color-tartan-dark: rgba(213, 229, 245, 0.4); /* Very Light Blue/Gray for tartan contrast */
 }
 
 /* --- MOBILE LAYOUT & BACKGROUND --- */
@@ -22,17 +22,27 @@ body {
     color: var(--color-text);
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Start content at the top, not center (better for scrolling) */
+    align-items: center; /* Start content at the top, not center (better for scrolling) */
     padding-top: 30px;
     margin: 0;
     
     /* Tartan Pattern */
-    background-color: var(--color-background-soft);
     background-image: 
-        repeating-linear-gradient(45deg, var(--color-tartan-light) 0, var(--color-tartan-light) 5px, transparent 5px, transparent 10px),
-        repeating-linear-gradient(-45deg, var(--color-tartan-dark) 0, var(--color-tartan-dark) 5px, transparent 5px, transparent 10px);
-    background-size: 80px 80px;
-    opacity: 0.98; 
+        repeating-linear-gradient(45deg, var(--color-tartan-light) 0, var(--color-tartan-light) 10px, transparent 10px, transparent 28px),
+        repeating-linear-gradient(-45deg, var(--color-tartan-dark) 0, var(--color-tartan-dark) 10px, transparent 15px, transparent 28px),
+        linear-gradient(rgba(0, 151, 173, .85),rgba(0, 151, 173, 0.15)),
+        url(background.jpg);
+    /* Set size for the tartan pattern and the image */
+    background-size: 80px 80px, 80px 80px, cover, cover; 
+    background-repeat: repeat, repeat;
+    /* Ensure the background image covers the whole screen */
+    background-attachment: fixed; /* Optional: Makes the background image static */
+    background-position: center center;
+    
+    background-color: rgba(0, 151, 173, 0.85); /* Fallback color */
+    
+    /* Remove opacity from body, as we now control transparency via RGBA colors */
+    opacity: 1;
 }
 
 .container {
